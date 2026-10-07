@@ -1,4 +1,4 @@
-# POOGym — Fase 1
+# POOGym - Fase 1
 
 Aplicação de consola em Java para gerir sócios, instrutores, actividades e
 marcações de um ginásio. Esta versão implementa as funcionalidades da Fase 1
