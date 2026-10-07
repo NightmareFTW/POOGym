@@ -1,0 +1,72 @@
+@startuml
+class Socio {
+  - nome: String
+  - numero: String
+  - email: String
+  - desconto: double
+  - tipo: String
+  - informacaoAdicional: String
+  + calcularPrecoFinal(precoBase: double): double
+  + calcularPoupanca(precoBase: double): double
+}
+
+class SocioIndividual {
+  - anoNascimento: int
+}
+
+class SocioEmpresa {
+  - nomeEmpresa: String
+  - nifEmpresa: String
+}
+
+class Instrutor {
+  - numero: int
+  - nome: String
+  - genero: String
+  - formacao: String
+}
+
+class Atividade {
+  - numero: int
+  - nome: String
+  - data: String
+  - hora: String
+  - duracaoMinutos: int
+  - categoria: String
+  - detalhe: String
+  - capacidadeMaxima: int
+  - custoBase: double
+}
+
+class AulaGrupo
+class SessaoPersonalTraining
+
+class Marcacao {
+  - socio: Socio
+  - atividade: Atividade
+  + getCustoFinal(): double
+  + getPoupanca(): double
+}
+
+class POOGym {
+  - socios: ArrayList<Socio>
+  - instrutores: ArrayList<Instrutor>
+  - atividades: ArrayList<Atividade>
+  - marcacoes: ArrayList<Marcacao>
+}
+
+class Main
+
+Socio <|-- SocioIndividual
+Socio <|-- SocioEmpresa
+Atividade <|-- AulaGrupo
+Atividade <|-- SessaoPersonalTraining
+Atividade --> "1" Instrutor : responsável
+Marcacao --> "1" Socio
+Marcacao --> "1" Atividade
+POOGym o-- "0..*" Socio
+POOGym o-- "0..*" Instrutor
+POOGym o-- "0..*" Atividade
+POOGym o-- "0..*" Marcacao
+Main --> POOGym
+@enduml
