@@ -1,7 +1,9 @@
+import java.io.Console;
+import java.io.PrintStream;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.io.PrintStream;
-import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 /**
@@ -11,8 +13,8 @@ public class Main {
     private Scanner teclado;
     private POOGym ginasio;
 
-    private Main() {
-        teclado = new Scanner(System.in, StandardCharsets.UTF_8);
+    private Main(Charset charset) {
+        teclado = new Scanner(System.in, charset);
         ginasio = new POOGym();
         ginasio.carregarDadosDemonstracao();
     }
@@ -21,8 +23,11 @@ public class Main {
      * Inicia a aplicação.
      */
     public static void main(String[] args) {
-        System.setOut(new PrintStream(System.out, true, StandardCharsets.UTF_8));
-        Main aplicacao = new Main();
+        Console consola = System.console();
+        Charset charset = consola == null
+                ? StandardCharsets.UTF_8 : consola.charset();
+        System.setOut(new PrintStream(System.out, true, charset));
+        Main aplicacao = new Main(charset);
         aplicacao.executar();
     }
 
